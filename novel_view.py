@@ -9,7 +9,6 @@ import hydra
 from tqdm import tqdm
 import imageio
 
-
 def get_ray_directions(H, W):
     x, y = np.meshgrid(np.arange(W), np.arange(H), indexing="xy")
     xy = np.stack([x, y, np.ones_like(x)], axis=-1)
@@ -126,7 +125,6 @@ def main(opt):
     imgs = [(img.cpu().numpy() * 255).astype(np.uint8)[0] for img in imgs]
     imgs = [cv2.cvtColor(img, cv2.COLOR_BGRA2RGBA) for img in imgs]
     imageio.mimsave(f"{folder}/../{animation}.gif", imgs, fps=30)
-
 
 if __name__ == "__main__":
     main()

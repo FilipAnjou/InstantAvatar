@@ -6,7 +6,6 @@ from pytorch_lightning.loggers import TensorBoardLogger
 import hydra
 from omegaconf import OmegaConf
 
-
 @hydra.main(config_path="./confs", config_name="SNARF_NGP")
 def main(opt):
     pl.seed_everything(opt.seed)

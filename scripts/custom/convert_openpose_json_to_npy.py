@@ -2,7 +2,6 @@ import os
 import json
 import numpy as np
 
-
 def convert(JSON_FOLDER, NPY_PATH):
     # Initialize an empty list to accumulate the pose data
     pose_data_list = []
@@ -17,6 +16,8 @@ def convert(JSON_FOLDER, NPY_PATH):
             # Load the JSON data
             with open(JSON_PATH, 'r') as f:
                 data = json.load(f)
+
+            print(data)
             
             # Extract the pose data from the JSON data
             pose_data = np.array(data['people'][0]['pose_keypoints_2d']).reshape((-1, 3))

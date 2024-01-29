@@ -2,8 +2,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.cuda.amp import custom_fwd
-from third_parties.lpips import LPIPS
+#from third_parties.lpips import LPIPS
 
+# XXX: NEW (fixed things!)
+from lpips import LPIPS
 
 class NGPLoss(nn.Module):
     def __init__(self, opt) -> None:

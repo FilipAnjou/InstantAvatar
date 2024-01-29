@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Check if path is specified as an argument
 if [ -z "$1" ]; then
   echo "Please specify the path to the folder containing the images."
@@ -12,7 +13,9 @@ if [ ! -d "$1" ]; then
 fi
 
 # Set the path to your OpenPose installation
-OPENPOSE_PATH="$HOME/third_party/openpose-cpp/"
+#OPENPOSE_PATH="$HOME/third_party/openpose-cpp/"
+#OPENPOSE_PATH="../openpose/build"
+OPENPOSE_PATH="../openpose"
 
 # Set the path to the absoulte folder containing the images
 IMAGE_FOLDER=$1
@@ -21,7 +24,7 @@ IMAGE_FOLDER=$(realpath $IMAGE_FOLDER)
 CURRENT_DIR=$(pwd)
 cd $OPENPOSE_PATH
 ./build/examples/openpose/openpose.bin \
-  --image_dir $IMAGE_FOLDER\
+  --image_dir $IMAGE_FOLDER \
   --display 0 \
   --write_json $IMAGE_FOLDER/../openpose_json/ \
   --write_images $IMAGE_FOLDER/../openpose_output/ \

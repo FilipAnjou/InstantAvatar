@@ -115,6 +115,10 @@ def main(opt):
             cv2.imwrite("{}/{}.png".format(folder, i), (img.cpu().numpy() * 255).astype(np.uint8)[0])
     imgs = [(img.cpu().numpy() * 255).astype(np.uint8)[0] for img in imgs]
     imgs = [cv2.cvtColor(img, cv2.COLOR_BGRA2RGBA) for img in imgs]
+
+    # XXX: NEW
+    print("Saving GIF to", f"{folder}/{animation}.gif")
+
     imageio.mimsave(f"{folder}/{animation}.gif", imgs, fps=30)
 
 if __name__ == "__main__":

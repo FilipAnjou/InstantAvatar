@@ -136,5 +136,7 @@ if __name__ == "__main__":
 
     if args.headless:
         viewer.save_video(video_dir=f"{args.path}/output.mp4", output_fps=args.fps)
+        # XXX: NEW (unexpected argument: video_dir)
+        #viewer.export_video(video_dir=f"{args.path}/output.mp4", output_fps=args.fps)
     else:
         viewer.run()
