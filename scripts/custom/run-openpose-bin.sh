@@ -13,8 +13,6 @@ if [ ! -d "$1" ]; then
 fi
 
 # Set the path to your OpenPose installation
-#OPENPOSE_PATH="$HOME/third_party/openpose-cpp/"
-#OPENPOSE_PATH="../openpose/build"
 OPENPOSE_PATH="../openpose"
 
 # Set the path to the absoulte folder containing the images
@@ -31,9 +29,10 @@ cd $OPENPOSE_PATH
   --write_images_format jpg \
   --render_pose 1 \
   --render_threshold 0.5 \
-  --number_people_max 1 \
+  --number_people_max 5 \
   --model_pose BODY_25
 cd $CURRENT_DIR
 
+echo "(Converting openpose's output to JSON...)"
 python ./scripts/custom/convert_openpose_json_to_npy.py \
   --json_dir $IMAGE_FOLDER/../openpose_json/

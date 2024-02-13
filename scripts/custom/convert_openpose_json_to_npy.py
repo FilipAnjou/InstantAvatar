@@ -6,6 +6,8 @@ def convert(JSON_FOLDER, NPY_PATH):
     # Initialize an empty list to accumulate the pose data
     pose_data_list = []
 
+    total_people = 0
+
     # Loop over all JSON files in the folder
     for JSON_FILE in sorted(os.listdir(JSON_FOLDER)):
         # Check if the file is a JSON file
@@ -17,13 +19,20 @@ def convert(JSON_FOLDER, NPY_PATH):
             with open(JSON_PATH, 'r') as f:
                 data = json.load(f)
 
-            print(data)
+            #print("People:", len(data['people']))
+            if len(data['people']) == 0:
+                continue
+            total_people += len(data['people'])
             
             # Extract the pose data from the JSON data
             pose_data = np.array(data['people'][0]['pose_keypoints_2d']).reshape((-1, 3))
             
             # Add the pose data to the list
             pose_data_list.append(pose_data)
+
+    if total_people == 0:
+        print("NO PEOPLE DETECTED! ABORTING.")
+
 
     # Convert the list of pose data arrays to a single NumPy array
     pose_data_array = np.stack(pose_data_list, axis=0)
